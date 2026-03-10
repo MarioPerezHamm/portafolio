@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 interface TypewriterTextProps {
   text: string
@@ -19,6 +19,11 @@ export function TypewriterText({
 }: TypewriterTextProps) {
   const [displayText, setDisplayText] = useState("")
   const [isComplete, setIsComplete] = useState(false)
+  const onCompleteRef = useRef(onComplete)
+  
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+  }, [onComplete])
 
   useEffect(() => {
     let currentIndex = 0
@@ -32,12 +37,12 @@ export function TypewriterText({
       } else {
         clearInterval(interval)
         setIsComplete(true)
-        onComplete?.()
+        onCompleteRef.current?.()
       }
     }, delay)
 
     return () => clearInterval(interval)
-  }, [text, delay, onComplete])
+  }, [text, delay])
 
   return (
     <span className={className}>
