@@ -29,7 +29,7 @@ export function ContactSection() {
             label="perezfernan159@gmail.com"
           />
           <TerminalLink
-            href="https://github.com/MarioPerezHamm/SentimenAI"
+            href="https://github.com/MarioPerezHamm/sentiment-api-equipo39"
             icon={ExternalLink}
             label="Proyecto SentimenAI"
           />
