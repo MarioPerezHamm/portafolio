@@ -76,10 +76,10 @@ const experiences: ExperienceItem[] = [
     status: "standby",
     highlights: [
       "MVP desarrollado en 8 horas para entender y predecir leads y comportamiento de clientes para agencias digitales.",
-      "Agente conversacional con Gemini CLI y modelo de Machine Learning para predecir viabilidad de proyectos.",
+      "Agente conversacional asistido por IA (Codex / Cursor) y modelo de Machine Learning para predecir viabilidad de proyectos.",
       "Despliegue ágil en Firebase y obtención del 3.er lugar del certamen.",
     ],
-    tags: ["Gemini CLI", "Machine Learning", "Firebase", "Python", "Data Analytics"],
+    tags: ["Codex", "Cursor", "Machine Learning", "Firebase", "Python", "Data Analytics"],
   },
   {
     period: "AGO 2024 — OCT 2025",

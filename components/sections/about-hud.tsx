@@ -41,7 +41,7 @@ export function AboutHUD() {
             </p>
 
             <p className="text-slate-300 leading-relaxed font-mono text-sm sm:text-base">
-              Combino análisis riguroso de requerimientos, ingeniería de telecomunicaciones (redes FTTH, protocolos TCP/IP, simulación GNS3/EVE-NG), despliegue serverless contenerizado en GCP Cloud Run y desarrollo con agentes de código modernos (Antigravity, Gemini CLI, Claude Code, MCP), garantizando soluciones escalables, seguras y orientadas a resultados reales.
+              Combino análisis riguroso de requerimientos, ingeniería de telecomunicaciones (redes FTTH, protocolos TCP/IP, simulación GNS3/EVE-NG), despliegue serverless contenerizado en GCP Cloud Run y desarrollo con agentes de código modernos (Antigravity, Cursor, Codex, Claude Code, MCP), garantizando soluciones escalables, seguras y orientadas a resultados reales.
             </p>
 
             {/* Sub-areas pill badges */}

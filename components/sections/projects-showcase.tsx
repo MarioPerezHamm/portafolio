@@ -87,13 +87,13 @@ const projects: ProjectData[] = [
     status: "active",
     badgeLabel: "3.er LUGAR PODIO",
     description:
-      "MVP desarrollado en 8 horas récord para el Hackathon Talento Tech. Permite a agencias de marketing digital visualizar, predecir y entender el comportamiento de sus clientes mediante un agente conversacional interactivo asistido por IA (Gemini CLI) y modelos de Machine Learning entrenados para predecir viabilidad de proyectos.",
+      "MVP desarrollado en 8 horas récord para el Hackathon Talento Tech. Permite a agencias de marketing digital visualizar, predecir y entender el comportamiento de sus clientes mediante un agente conversacional interactivo asistido por IA (Codex / Cursor) y modelos de Machine Learning entrenados para predecir viabilidad de proyectos.",
     metrics: [
       { label: "DESARROLLO", value: "8 Horas MVP" },
       { label: "PREMIO", value: "3.er Lugar Hackathon" },
-      { label: "STACK IA", value: "Gemini CLI + ML" },
+      { label: "STACK IA", value: "Codex / ML Agent" },
     ],
-    tags: ["Machine Learning", "Gemini CLI", "Firebase", "Data Analytics", "Chatbot Agent", "Python"],
+    tags: ["Machine Learning", "Codex", "Cursor", "Firebase", "Data Analytics", "Chatbot Agent", "Python"],
     accent: "cyan",
     icon: Award,
   },
