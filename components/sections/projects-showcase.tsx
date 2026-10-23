@@ -107,11 +107,11 @@ const projects: ProjectData[] = [
     description:
       "Landing page de preventa de alta conversión desarrollada para captar leads interesados en suplementos de proteína antes de su lanzamiento comercial. Desarrollada en 2 semanas utilizando herramientas asistidas por agentes (v0, Antigravity) e integraciones MCP con Spline, Figma, GCP y Composio.",
     metrics: [
-      { label: "LEAD TIME", value: "2 Semanas" },
+      { label: "DESPLIEGUE CLOUD", value: "GCP Cloud Run / OCI" },
       { label: "HERRAMIENTAS", value: "Antigravity + MCP" },
       { label: "3D ASSETS", value: "Spline + Figma" },
     ],
-    tags: ["React", "Antigravity", "MCP", "Spline 3D", "Figma", "GCP", "Composio"],
+    tags: ["React", "GCP Cloud Run", "Google Cloud (GCP)", "Antigravity", "MCP", "Spline 3D", "Figma", "Composio"],
     liveUrl: "https://mbnutritionlabs.com",
     accent: "green",
     icon: Sparkles,

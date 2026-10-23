@@ -51,9 +51,9 @@ const experiences: ExperienceItem[] = [
     status: "active",
     highlights: [
       "Desarrollo en 2 semanas de landing page de preventa para captación de leads comerciales antes del lanzamiento.",
-      "Construcción utilizando v0 y Antigravity, integrando mediante MCP (Model Context Protocol) Spline, Figma, GCP y Composio.",
+      "Construcción utilizando v0 y Antigravity, integrando mediante MCP (Model Context Protocol) Spline, Figma, GCP (despliegue de servicios en Cloud Run) y Composio.",
     ],
-    tags: ["Antigravity", "MCP", "v0", "Spline 3D", "Figma", "GCP", "Composio"],
+    tags: ["Google Cloud (GCP)", "GCP Cloud Run", "Antigravity", "MCP", "v0", "Docker", "Spline 3D", "Figma", "Composio"],
   },
   {
     period: "DIC 2025 — ENE 2026",

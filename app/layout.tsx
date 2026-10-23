@@ -13,7 +13,7 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   title: "Mario Pérez Martínez | Ingeniero Electrónico & Backend Developer",
   description:
-    "Portafolio profesional de Mario Fernando Pérez Martínez — Ingeniero Electrónico con énfasis en Telecomunicaciones (Universidad del Quindío). Especialista en desarrollo backend con Java 21, Spring Boot, bases de datos SQL, IA aplicada (94.2% precisión ML), redes FTTH y ciberseguridad.",
+    "Portafolio profesional de Mario Fernando Pérez Martínez — Ingeniero Electrónico con énfasis en Telecomunicaciones (Universidad del Quindío). Especialista en desarrollo backend con Java 21, Spring Boot, bases de datos SQL, IA aplicada (94.2% precisión ML), despliegues en Google Cloud (Cloud Run) / OCI, redes FTTH y ciberseguridad.",
   keywords: [
     "Mario Perez",
     "Mario Fernando Perez Martinez",
@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     "Machine Learning",
     "Python",
     "Docker",
+    "Google Cloud Platform",
+    "GCP",
+    "Cloud Run",
     "OCI",
     "FTTH",
     "Ciberseguridad",

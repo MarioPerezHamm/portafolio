@@ -67,7 +67,8 @@ export function HeroHUD() {
               Ingeniero Electrónico con énfasis en Telecomunicaciones{" "}
               <span className="text-accent">(Universidad del Quindío, 2026)</span>. Especializado en{" "}
               <span className="text-primary font-semibold">Desarrollo Backend con Java 21 & Spring Boot</span>,{" "}
-              <span className="text-primary font-semibold">Inteligencia Artificial Aplicada</span>, redes de fibra óptica FTTH y ciberseguridad.
+              <span className="text-primary font-semibold">Inteligencia Artificial Aplicada</span>, despliegues contenerizados en{" "}
+              <span className="text-accent font-semibold">Google Cloud Platform (Cloud Run)</span> y OCI, redes FTTH y ciberseguridad.
             </p>
           </div>
 
@@ -83,11 +84,11 @@ export function HeroHUD() {
             </div>
             <div className="p-3 bg-slate-900/40 border border-primary/15 rounded">
               <div className="text-[10px] text-primary/60 uppercase">INFRASTRUCTURE</div>
-              <div className="text-sm md:text-base font-bold text-white mt-0.5">OCI / Docker</div>
+              <div className="text-sm md:text-base font-bold text-white mt-0.5">GCP / OCI / Docker</div>
             </div>
             <div className="p-3 bg-slate-900/40 border border-primary/15 rounded">
-              <div className="text-[10px] text-emerald-400/60 uppercase">HACKATHON</div>
-              <div className="text-sm md:text-base font-bold text-emerald-400 mt-0.5">3.er Lugar IA</div>
+              <div className="text-[10px] text-emerald-400/60 uppercase">CLOUD DEPLOY</div>
+              <div className="text-sm md:text-base font-bold text-emerald-400 mt-0.5">Cloud Run Ready</div>
             </div>
           </div>
 

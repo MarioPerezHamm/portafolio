@@ -37,11 +37,11 @@ export function AboutHUD() {
               He participado activamente en el diseño y despliegue del backend para la plataforma de comercio electrónico rural de{" "}
               <span className="text-primary font-semibold">Corporación TOMASI</span> (manejando más de 30 endpoints REST con pasarela Wompi y almacenamiento Cloudinary), y en el ecosistema{" "}
               <span className="text-white font-semibold">SentimAI</span>, donde entrené un modelo de Machine Learning con{" "}
-              <span className="text-accent font-semibold">94.2% de precisión</span> desplegado en microservicios contenerizados en Oracle Cloud Infrastructure (OCI).
+              <span className="text-accent font-semibold">94.2% de precisión</span> desplegado en microservicios contenerizados en <span className="text-primary font-semibold">Google Cloud Platform (Cloud Run)</span> y Oracle Cloud Infrastructure (OCI).
             </p>
 
             <p className="text-slate-300 leading-relaxed font-mono text-sm sm:text-base">
-              Combino análisis riguroso de requerimientos, ingeniería de telecomunicaciones (redes FTTH, protocolos TCP/IP, simulación GNS3/EVE-NG) y desarrollo con agentes de código modernos (Antigravity, Gemini CLI, Claude Code, MCP), garantizando soluciones escalables, seguras y orientadas a resultados reales.
+              Combino análisis riguroso de requerimientos, ingeniería de telecomunicaciones (redes FTTH, protocolos TCP/IP, simulación GNS3/EVE-NG), despliegue serverless contenerizado en GCP Cloud Run y desarrollo con agentes de código modernos (Antigravity, Gemini CLI, Claude Code, MCP), garantizando soluciones escalables, seguras y orientadas a resultados reales.
             </p>
 
             {/* Sub-areas pill badges */}
@@ -56,7 +56,7 @@ export function AboutHUD() {
               </div>
               <div className="flex items-center gap-2 text-xs font-mono text-slate-300 bg-slate-900/60 p-2.5 rounded border border-primary/15">
                 <Cpu className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>IA Aplicada & ML Models</span>
+                <span>GCP Cloud Run & IA Models</span>
               </div>
             </div>
           </HudCard>
