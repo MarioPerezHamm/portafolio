@@ -1,43 +1,41 @@
-import { HeroSection } from "@/components/hero-section"
-import { AboutSection } from "@/components/about-section"
-import { SkillsSection } from "@/components/skills-section"
-import { ExperienceSection } from "@/components/experience-section"
-import { ContactSection } from "@/components/contact-section"
+"use client"
+
+import dynamic from "next/dynamic"
+import { HeroHUD } from "@/components/sections/hero-hud"
+import { AboutHUD } from "@/components/sections/about-hud"
+import { ProjectsShowcase } from "@/components/sections/projects-showcase"
+import { SkillsMatrix } from "@/components/sections/skills-matrix"
+import { ExperienceTimeline } from "@/components/sections/experience-timeline"
+import { ContactConsole } from "@/components/sections/contact-console"
+
+// Dynamically import 3D Three.js canvas to guarantee client-side WebGL mounting
+const CyberSceneCanvas = dynamic(
+  () =>
+    import("@/components/3d/cyber-scene-canvas").then(
+      (mod) => mod.CyberSceneCanvas
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="fixed inset-0 bg-[#0B0F19] pointer-events-none" />
+    ),
+  }
+)
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <HeroSection />
+    <main className="relative min-h-screen bg-[#0B0F19] text-[#E2E8F0] overflow-x-hidden">
+      {/* 3D Interactive Centerpiece & Scrollytelling Canvas */}
+      <CyberSceneCanvas />
 
-      {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-4 md:px-8 pb-20">
-        {/* About Section */}
-        <AboutSection />
-
-        {/* Skills Section */}
-        <SkillsSection />
-
-        {/* Experience Section */}
-        <ExperienceSection />
-
-        {/* Contact Section */}
-        <ContactSection />
-
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-primary/20 text-center">
-          <div className="space-y-2">
-            <p className="text-primary/50 text-sm">
-              {"// Sistema terminado correctamente"}
-            </p>
-            <p className="text-primary/70 text-sm">
-              root@portfolio:~$ <span className="text-primary">exit</span>
-            </p>
-            <p className="text-primary/40 text-xs mt-4">
-              Desarrollado por Mario Fernando Perez Martinez | 2026
-            </p>
-          </div>
-        </footer>
+      {/* Scrollytelling HUD Sections */}
+      <div className="relative z-10 flex flex-col">
+        <HeroHUD />
+        <AboutHUD />
+        <ProjectsShowcase />
+        <SkillsMatrix />
+        <ExperienceTimeline />
+        <ContactConsole />
       </div>
     </main>
   )

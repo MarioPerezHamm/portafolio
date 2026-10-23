@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Fira_Code } from "next/font/google"
+import { SmoothScroll } from "@/components/ui/smooth-scroll"
+import { CyberNavbar } from "@/components/hud/cyber-navbar"
 import "./globals.css"
 
 const firaCode = Fira_Code({
@@ -9,24 +11,31 @@ const firaCode = Fira_Code({
 })
 
 export const metadata: Metadata = {
-  title: "Mario Perez | Ingeniero Electronico & Backend Developer",
+  title: "Mario Pérez Martínez | Ingeniero Electrónico & Backend Developer",
   description:
-    "Portafolio de Mario Fernando Perez Martinez - Ingeniero Electronico especializado en desarrollo backend, inteligencia artificial, telematica y ciberseguridad.",
+    "Portafolio profesional de Mario Fernando Pérez Martínez — Ingeniero Electrónico con énfasis en Telecomunicaciones (Universidad del Quindío). Especialista en desarrollo backend con Java 21, Spring Boot, bases de datos SQL, IA aplicada (94.2% precisión ML), redes FTTH y ciberseguridad.",
   keywords: [
     "Mario Perez",
+    "Mario Fernando Perez Martinez",
     "Ingeniero Electronico",
+    "Universidad del Quindio",
     "Backend Developer",
+    "Java 21",
+    "Spring Boot",
+    "Machine Learning",
     "Python",
-    "FastAPI",
-    "AI",
-    "PLN",
+    "Docker",
+    "OCI",
+    "FTTH",
+    "Ciberseguridad",
     "Colombia",
   ],
-  authors: [{ name: "Mario Fernando Perez Martinez" }],
+  authors: [{ name: "Mario Fernando Pérez Martínez" }],
+  creator: "Mario Fernando Pérez Martínez",
 }
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#0B0F19",
   width: "device-width",
   initialScale: 1,
 }
@@ -38,10 +47,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={firaCode.variable}>
-      <body className="min-h-screen">
-        <div className="scanline" aria-hidden="true" />
-        <div className="crt-overlay" aria-hidden="true" />
-        {children}
+      <body className="min-h-screen bg-[#0B0F19] text-[#E2E8F0] antialiased selection:bg-[#00FF66] selection:text-[#0B0F19]">
+        <div className="cyber-scanline" aria-hidden="true" />
+        <SmoothScroll>
+          <CyberNavbar />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   )
