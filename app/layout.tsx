@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Fira_Code } from "next/font/google"
 import { SmoothScroll } from "@/components/ui/smooth-scroll"
+import { MotionProvider } from "@/components/ui/motion-provider"
 import { CyberNavbar } from "@/components/hud/cyber-navbar"
 import "./globals.css"
 
@@ -13,7 +14,7 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   title: "Mario Pérez Martínez | Ingeniero Electrónico & Backend Developer",
   description:
-    "Portafolio profesional de Mario Fernando Pérez Martínez — Ingeniero Electrónico con énfasis en Telecomunicaciones (Universidad del Quindío). Especialista en desarrollo backend con Java 21, Spring Boot, bases de datos SQL, IA aplicada (94.2% precisión ML), despliegues en Google Cloud (Cloud Run) / OCI, redes FTTH y ciberseguridad.",
+    "Portafolio de Mario Fernando Pérez Martínez — Ingeniero Electrónico con énfasis en Telecomunicaciones, enfocado en desarrollo backend (Java 21, Spring Boot), IA aplicada y ciberseguridad.",
   keywords: [
     "Mario Perez",
     "Mario Fernando Perez Martinez",
@@ -49,13 +50,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={firaCode.variable}>
+    <html lang="es" className={`${firaCode.variable} bg-background`}>
       <body className="min-h-screen bg-[#0B0F19] text-[#E2E8F0] antialiased selection:bg-[#00FF66] selection:text-[#0B0F19]">
         <div className="cyber-scanline" aria-hidden="true" />
-        <SmoothScroll>
-          <CyberNavbar />
-          {children}
-        </SmoothScroll>
+        <MotionProvider>
+          <SmoothScroll>
+            <CyberNavbar />
+            {children}
+          </SmoothScroll>
+        </MotionProvider>
       </body>
     </html>
   )
