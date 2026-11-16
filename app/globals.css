@@ -8,9 +8,13 @@
   }
 
   html {
-    scroll-behavior: smooth;
     background-color: #0B0F19;
     color: #E2E8F0;
+  }
+
+  :focus-visible {
+    outline: 2px solid #00E5FF;
+    outline-offset: 3px;
   }
 
   body {
@@ -55,10 +59,9 @@
 
 @layer components {
   /* Glassmorphic Cyber HUD Card */
+  /* No backdrop-filter here: these panels sit over a canvas that repaints every frame, and blurring it per panel is costly. */
   .hud-panel {
-    background: rgba(13, 19, 34, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(13, 19, 34, 0.9);
     border: 1px solid rgba(0, 255, 102, 0.22);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 102, 0.06);
     position: relative;
@@ -171,6 +174,37 @@
     background-image: 
       linear-gradient(to right, rgba(0, 255, 102, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+  }
+
+  .scene-vignette {
+    background: rgba(11, 15, 25, 0.45);
+  }
+
+  .hero-scrim {
+    background: linear-gradient(to bottom, rgba(11, 15, 25, 0.35), rgba(11, 15, 25, 0.6));
+  }
+
+  @media (min-width: 1024px) {
+    .scene-vignette {
+      background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(11, 15, 25, 0.7) 100%);
+    }
+
+    .hero-scrim {
+      background: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.86) 46%, transparent 74%);
+    }
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cyber-scanline {
+    display: none;
+  }
+
+  .animate-ping,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none;
   }
 }
 

@@ -1,134 +1,129 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { ArrowDown, Terminal, Shield, Cpu, Activity, ExternalLink, Download } from "lucide-react"
-import { CyberBadge } from "../hud/cyber-badge"
+import { motion, type Variants } from "framer-motion"
+import { ArrowDown, Cpu, Github, MessageCircle } from "lucide-react"
+import { CONTACT, whatsappUrl } from "@/lib/contact"
+
+const HIGHLIGHTS = [
+  { value: "94.2%", label: "Precisión del modelo de SentimAI" },
+  { value: "~30", label: "Endpoints REST en Corporación TOMASI" },
+  { value: "3.er lugar", label: "Hackathon Talento Tech" },
+]
+
+const LEGEND = [
+  { label: "Servidores", dot: "bg-accent" },
+  { label: "API endpoints", dot: "bg-primary" },
+  { label: "Clientes", dot: "bg-slate-400" },
+]
+
+const container: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+}
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+}
 
 export function HeroHUD() {
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center items-center px-4 md:px-8 pt-24 pb-16 z-10">
-      <div className="max-w-5xl w-full mx-auto">
-        {/* Top Status Bar */}
+    <section className="relative flex min-h-svh flex-col justify-center px-4 pb-12 pt-28 md:px-8">
+      <div className="hero-scrim absolute inset-0 -z-10" aria-hidden="true" />
+
+      <div className="mx-auto w-full max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-wrap items-center justify-between gap-3 mb-6 px-4 py-2 rounded-sm bg-[#0d1322]/80 border border-primary/20 backdrop-blur-md"
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          data-scene-copy="hero"
+          className="flex max-w-xl flex-col gap-6 xl:max-w-2xl"
         >
-          <div className="flex items-center gap-3">
-            <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-            <span className="text-xs font-mono tracking-widest text-primary/80 uppercase">
-              CYBER_CORE // SYS.ONLINE [v4.2.0]
-            </span>
-          </div>
+          <motion.p
+            variants={item}
+            className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary"
+          >
+            <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_#00FF66]" aria-hidden="true" />
+            Ingeniero Electrónico · Backend Developer
+          </motion.p>
 
-          <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground">
-            <CyberBadge label="TLS 1.3 ENCRYPTED" status="encrypted" />
-            <span className="hidden sm:inline-block text-[11px] text-primary/60">
-              LOC: PASTO / ARMENIA, COLOMBIA
-            </span>
-          </div>
-        </motion.div>
+          <motion.h1
+            variants={item}
+            className="text-balance font-mono text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-6xl xl:text-7xl"
+          >
+            Mario Fernando <span className="cyber-text-glow text-primary">Pérez Martínez</span>
+          </motion.h1>
 
-        {/* Main Central HUD Terminal Box */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="hud-panel p-6 md:p-10 rounded-sm relative overflow-hidden"
-        >
-          {/* Corner accents */}
-          <div className="hud-corner-tl" />
-          <div className="hud-corner-tr" />
-          <div className="hud-corner-bl" />
-          <div className="hud-corner-br" />
+          <motion.p
+            variants={item}
+            className="max-w-xl text-pretty font-mono text-base leading-relaxed text-slate-300 md:text-lg"
+          >
+            Ingeniero Electrónico con énfasis en Telecomunicaciones, enfocado en{" "}
+            <span className="font-semibold text-white">desarrollo backend (Java 21, Spring Boot)</span>,{" "}
+            <span className="font-semibold text-white">IA aplicada</span> y{" "}
+            <span className="font-semibold text-white">ciberseguridad</span>.
+          </motion.p>
 
-          {/* Terminal Command Header */}
-          <div className="flex items-center justify-between pb-4 mb-6 border-b border-primary/15">
-            <div className="flex items-center gap-2 text-xs font-mono text-primary/70">
-              <Terminal className="w-4 h-4 text-primary" />
-              <span>root@cyber-node:~$ ./load_operator_profile.sh --full</span>
-            </div>
-            <span className="text-[11px] font-mono text-accent">STATUS: READY</span>
-          </div>
-
-          {/* Primary Identity Display */}
-          <div className="space-y-4">
-            <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/30 rounded text-xs font-mono text-primary uppercase tracking-widest mb-1">
-              [ INGENIERO ELECTRÓNICO & BACKEND DEVELOPER ]
-            </div>
-
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight font-mono text-white">
-              MARIO FERNANDO <br />
-              <span className="text-primary cyber-text-glow">PÉREZ MARTÍNEZ</span>
-            </h1>
-
-            <p className="text-base sm:text-lg md:text-xl text-slate-300 font-mono max-w-3xl leading-relaxed pt-2">
-              Ingeniero Electrónico con énfasis en Telecomunicaciones{" "}
-              <span className="text-accent">(Universidad del Quindío, 2026)</span>. Especializado en{" "}
-              <span className="text-primary font-semibold">Desarrollo Backend con Java 21 & Spring Boot</span>,{" "}
-              <span className="text-primary font-semibold">Inteligencia Artificial Aplicada</span>, despliegues contenerizados en{" "}
-              <span className="text-accent font-semibold">Google Cloud Platform (Cloud Run)</span> y OCI, redes FTTH y ciberseguridad.
-            </p>
-          </div>
-
-          {/* Telemetry quick metrics grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-6 border-t border-primary/15 font-mono">
-            <div className="p-3 bg-slate-900/40 border border-primary/15 rounded">
-              <div className="text-[10px] text-primary/60 uppercase">CORE ENGINE</div>
-              <div className="text-sm md:text-base font-bold text-white mt-0.5">Java 21 / Spring</div>
-            </div>
-            <div className="p-3 bg-slate-900/40 border border-primary/15 rounded">
-              <div className="text-[10px] text-accent/60 uppercase">AI PRECISION</div>
-              <div className="text-sm md:text-base font-bold text-accent mt-0.5">94.2% ML Model</div>
-            </div>
-            <div className="p-3 bg-slate-900/40 border border-primary/15 rounded">
-              <div className="text-[10px] text-primary/60 uppercase">INFRASTRUCTURE</div>
-              <div className="text-sm md:text-base font-bold text-white mt-0.5">GCP / OCI / Docker</div>
-            </div>
-            <div className="p-3 bg-slate-900/40 border border-primary/15 rounded">
-              <div className="text-[10px] text-emerald-400/60 uppercase">CLOUD DEPLOY</div>
-              <div className="text-sm md:text-base font-bold text-emerald-400 mt-0.5">Cloud Run Ready</div>
-            </div>
-          </div>
-
-          {/* CTA Actions */}
-          <div className="flex flex-wrap items-center gap-4 mt-8 pt-4">
-            <a href="#projects" className="cyber-btn group">
-              <Cpu className="w-4 h-4 text-primary group-hover:text-background transition-colors" />
-              <span>EXPLORAR PROYECTOS</span>
+          <motion.div variants={item} className="flex flex-wrap items-center gap-3">
+            <a href="#projects" className="cyber-btn">
+              <Cpu className="h-4 w-4" aria-hidden="true" />
+              <span>Ver proyectos</span>
             </a>
 
             <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded text-sm font-mono tracking-wider border border-accent/40 bg-accent/10 text-accent hover:bg-accent hover:text-background transition-all duration-200 shadow-[0_0_15px_rgba(0,229,255,0.2)]"
-            >
-              <Activity className="w-4 h-4" />
-              <span>ESTABLECER CONTACTO</span>
-            </a>
-
-            <a
-              href="https://github.com/MarioPerezHamm"
+              href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded text-sm font-mono text-slate-300 hover:text-primary transition-colors border border-slate-700/60 hover:border-primary/40"
+              className="inline-flex items-center gap-2 rounded border border-accent/50 bg-accent/10 px-5 py-2.5 font-mono text-sm uppercase tracking-wider text-accent transition-colors duration-200 hover:bg-accent hover:text-background"
             >
-              <ExternalLink className="w-4 h-4" />
-              <span>GITHUB</span>
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              <span>WhatsApp</span>
+              <span className="sr-only">(se abre en una pestaña nueva)</span>
             </a>
-          </div>
-        </motion.div>
 
-        {/* Scroll Indicator */}
-        <div className="flex justify-center mt-12">
-          <a
-            href="#about"
-            className="flex flex-col items-center gap-2 text-primary/60 hover:text-primary transition-colors text-xs font-mono"
+            <a
+              href={CONTACT.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded border border-slate-600 px-4 py-2.5 font-mono text-sm uppercase tracking-wider text-slate-200 transition-colors duration-200 hover:border-primary/60 hover:text-primary"
+            >
+              <Github className="h-4 w-4" aria-hidden="true" />
+              <span>GitHub</span>
+              <span className="sr-only">(se abre en una pestaña nueva)</span>
+            </a>
+          </motion.div>
+
+          <motion.dl
+            variants={item}
+            className="grid grid-cols-1 gap-4 border-t border-primary/20 pt-6 font-mono sm:grid-cols-3"
           >
-            <span>SCROLL // EXPLORAR SISTEMA</span>
-            <ArrowDown className="w-4 h-4 animate-bounce text-primary" />
-          </a>
-        </div>
+            {HIGHLIGHTS.map((highlight) => (
+              <div key={highlight.label} className="flex flex-col-reverse justify-end gap-1">
+                <dt className="text-xs leading-relaxed text-slate-400">{highlight.label}</dt>
+                <dd className="text-2xl font-bold text-white">{highlight.value}</dd>
+              </div>
+            ))}
+          </motion.dl>
+        </motion.div>
+      </div>
+
+      <div className="mx-auto mt-12 flex w-full max-w-6xl flex-wrap items-end justify-between gap-6 font-mono text-xs">
+        <a
+          href="#about"
+          className="flex items-center gap-2 uppercase tracking-widest text-primary/80 transition-colors hover:text-primary"
+        >
+          <ArrowDown className="h-4 w-4 animate-bounce" aria-hidden="true" />
+          <span>Explorar perfil</span>
+        </a>
+
+        <ul className="hidden items-center gap-5 text-slate-400 lg:flex" aria-label="Leyenda del grafo de red">
+          {LEGEND.map((entry) => (
+            <li key={entry.label} className="flex items-center gap-2">
+              <span className={`h-2 w-2 rounded-full ${entry.dot}`} aria-hidden="true" />
+              {entry.label}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

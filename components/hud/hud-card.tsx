@@ -48,15 +48,15 @@ export function HudCard({
 
       {/* Optional HUD Header Bar */}
       {(headerTitle || statusTag) && (
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-primary/15 text-xs font-mono tracking-wider">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 pb-3 mb-4 border-b border-primary/15 text-xs font-mono tracking-wider">
           {headerTitle && (
-            <div className="flex items-center gap-2 text-primary/80 uppercase font-semibold">
-              <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full animate-ping" />
+            <div className="flex items-center gap-2 text-primary uppercase font-semibold">
+              <span className="inline-block w-1.5 h-1.5 shrink-0 bg-primary rounded-full" aria-hidden="true" />
               <span>{headerTitle}</span>
             </div>
           )}
           {statusTag && (
-            <span className="text-primary/50 text-[11px] font-mono">
+            <span className="text-primary/80 text-xs font-mono uppercase">
               [{statusTag}]
             </span>
           )}

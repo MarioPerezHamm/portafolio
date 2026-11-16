@@ -1,247 +1,231 @@
-"use client"
-
-import { motion } from "framer-motion"
+import {
+  Award,
+  Cpu,
+  ExternalLink,
+  Github,
+  Network,
+  ShieldAlert,
+  ShoppingCart,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react"
 import { HudCard } from "../hud/hud-card"
 import { TechTag } from "../hud/tech-tag"
-import { CyberBadge } from "../hud/cyber-badge"
-import { ExternalLink, Github, Terminal, ShieldAlert, Cpu, ShoppingCart, Award, Sparkles, Network } from "lucide-react"
+import { SectionHeader } from "../ui/section-header"
 
-interface ProjectData {
+interface Project {
   id: string
   title: string
   subtitle: string
   category: string
-  status: "active" | "standby" | "alert" | "encrypted"
-  badgeLabel: string
+  badge: string
   description: string
   metrics: { label: string; value: string }[]
   tags: string[]
   githubUrl?: string
   liveUrl?: string
+  liveLabel?: string
   accent: "green" | "cyan"
-  icon: any
+  icon: LucideIcon
 }
 
-const projects: ProjectData[] = [
+const PROJECTS: Project[] = [
   {
-    id: "sentimai",
-    title: "SentimAI",
-    subtitle: "AI Sentiment Analysis API & ML Classification Pipeline",
-    category: "AI & BACKEND MICROSERVICES",
-    status: "active",
-    badgeLabel: "94.2% ML ACCURACY",
+    id: "c2",
+    title: "Command & Control (C2)",
+    subtitle: "Sistema C2 para red team y pentesting con soporte multi-agente",
+    category: "Ciberseguridad",
+    badge: "Cifrado TLS",
     description:
-      "API REST de alto rendimiento que recibe reseñas, comentarios o tweets, aplicando un modelo de Data Science para clasificar sentimientos (Positivo, Neutro o Negativo) en JSON. Desarrollado con modelo de Regresión Logística y vectorización TF-IDF con umbral optimizado de 0.51 para priorizar comentarios críticos.",
+      "Sistema de Mando y Control para prácticas controladas de seguridad ofensiva, desarrollado para el reto de ALIGO Defensores Informáticos. Comunicación cifrada con TLS, interfaz de operador para gestionar varios agentes a la vez, ejecución de comandos dirigida o en broadcast y registro de auditoría.",
     metrics: [
-      { label: "PRECISIÓN MODELO", value: "94.2%" },
-      { label: "UMBRAL NEGATIVOS", value: "0.51" },
-      { label: "DESPLIEGUE CLOUD", value: "OCI + Docker" },
+      { label: "Seguridad", value: "Cifrado TLS" },
+      { label: "Arquitectura", value: "Multi-agente" },
+      { label: "Despliegue", value: "Docker" },
     ],
-    tags: ["Java 21", "Spring Boot", "MySQL", "Redis", "Machine Learning", "TF-IDF", "React", "Docker", "OCI"],
-    githubUrl: "https://github.com/MarioPerezHamm/sentiment-api-equipo39",
-    accent: "green",
-    icon: Cpu,
-  },
-  {
-    id: "c2-pentest",
-    title: "Command & Control (C2) System",
-    subtitle: "Red Team & Pentesting Architecture with Multi-Agent Support",
-    category: "CYBERSECURITY & NETWORKING",
-    status: "encrypted",
-    badgeLabel: "TLS 1.3 ENCRYPTED",
-    description:
-      "Sistema de Mando y Control (C2) funcional para prácticas controladas de ciberseguridad ofensiva (Red Team / Pentesting), desarrollado para el reto empresarial de ALIGO Defensores Informáticos. Integra cifrado TLS extremo a extremo, GUI de operador con gestión de múltiples agentes simultáneos, ejecución broadcast o dirigida y registro de auditoría.",
-    metrics: [
-      { label: "SEGURIDAD", value: "Cifrado TLS" },
-      { label: "ARQUITECTURA", value: "Multi-Agente" },
-      { label: "CONTAINER", value: "Docker Compose" },
-    ],
-    tags: ["Ciberseguridad", "Red Team", "TLS/SSL", "Python", "Multi-Agent", "Docker", "GNS3"],
+    tags: ["Red team", "Pentesting", "C2", "TLS", "Python", "Docker"],
     githubUrl: "https://github.com/MarioPerezHamm/Command-and-Control-C2-",
     accent: "cyan",
     icon: ShieldAlert,
   },
   {
-    id: "tomasi",
-    title: "Corporación TOMASI Backend",
-    subtitle: "E-Commerce Infrastructure for Rural & Agricultural Producers",
-    category: "ENTERPRISE BACKEND & PAYMENTS",
-    status: "active",
-    badgeLabel: "30+ REST ENDPOINTS",
+    id: "sentimai",
+    title: "SentimAI",
+    subtitle: "API de análisis de sentimientos con modelo de Machine Learning",
+    category: "IA + Backend",
+    badge: "94.2% de precisión",
     description:
-      "Plataforma backend de comercio digital para productos artesanales y agrícolas de productores rurales colombianos. Arquitectura con Java 21 y Spring Boot conectada a PostgreSQL, implementando autenticación robusta, pasarela de pagos Wompi y administración de activos multimedia con Cloudinary.",
+      "API REST que recibe reseñas, comentarios o tweets y los clasifica como positivos, neutros o negativos. El modelo combina Regresión Logística con vectorización TF-IDF y un umbral de 0.51 para priorizar los comentarios críticos.",
     metrics: [
-      { label: "ENDPOINTS REST", value: "30+ Activos" },
-      { label: "PASARELA", value: "Wompi Pay" },
-      { label: "STORAGE", value: "Cloudinary" },
+      { label: "Precisión", value: "94.2%" },
+      { label: "Umbral", value: "0.51" },
+      { label: "Despliegue", value: "OCI + Docker" },
     ],
-    tags: ["Java 21", "Spring Boot", "PostgreSQL", "Wompi", "Cloudinary", "REST API", "Seguridad"],
+    tags: ["Java 21", "Spring Boot", "MySQL", "Redis", "TF-IDF", "Regresión logística", "Docker", "OCI"],
+    githubUrl: "https://github.com/MarioPerezHamm/sentiment-api-equipo39",
     accent: "green",
-    icon: ShoppingCart,
-  },
-  {
-    id: "los-carlitos",
-    title: "Los Carlitos MVP — Podio Hackathon",
-    subtitle: "3.er Lugar // AI Marketing Predictive Leads Agent",
-    category: "DATA ANALYTICS & RAPID AI",
-    status: "active",
-    badgeLabel: "3.er LUGAR PODIO",
-    description:
-      "MVP desarrollado en 8 horas récord para el Hackathon Talento Tech. Permite a agencias de marketing digital visualizar, predecir y entender el comportamiento de sus clientes mediante un agente conversacional interactivo asistido por IA (Codex / Cursor) y modelos de Machine Learning entrenados para predecir viabilidad de proyectos.",
-    metrics: [
-      { label: "DESARROLLO", value: "8 Horas MVP" },
-      { label: "PREMIO", value: "3.er Lugar Hackathon" },
-      { label: "STACK IA", value: "Codex / ML Agent" },
-    ],
-    tags: ["Machine Learning", "Codex", "Cursor", "Firebase", "Data Analytics", "Chatbot Agent", "Python"],
-    accent: "cyan",
-    icon: Award,
+    icon: Cpu,
   },
   {
     id: "mb-nutrition",
-    title: "MB Nutrition Labs Landing",
-    subtitle: "High-Performance Pre-Sale Lead Engine Built with AI Agents",
-    category: "WEB DEVELOPMENT & AGENTIC WORKFLOWS",
-    status: "active",
-    badgeLabel: "PRODUCCIÓN LIVE",
+    title: "MB Nutrition Labs",
+    subtitle: "Landing page de preventa para captación de leads",
+    category: "Freelance · Web",
+    badge: "En producción",
     description:
-      "Landing page de preventa de alta conversión desarrollada para captar leads interesados en suplementos de proteína antes de su lanzamiento comercial. Desarrollada en 2 semanas utilizando herramientas asistidas por agentes (v0, Antigravity) e integraciones MCP con Spline, Figma, GCP y Composio.",
+      "Landing page de preventa desarrollada como proyecto freelance para captar interesados en suplementos de proteína antes del lanzamiento comercial. Construida en dos semanas con herramientas asistidas por agentes e integraciones MCP.",
     metrics: [
-      { label: "DESPLIEGUE CLOUD", value: "GCP Cloud Run / OCI" },
-      { label: "HERRAMIENTAS", value: "Antigravity + MCP" },
-      { label: "3D ASSETS", value: "Spline + Figma" },
+      { label: "Tipo", value: "Freelance" },
+      { label: "Entrega", value: "2 semanas" },
+      { label: "Cloud", value: "GCP" },
     ],
-    tags: ["React", "GCP Cloud Run", "Google Cloud (GCP)", "Antigravity", "MCP", "Spline 3D", "Figma", "Composio"],
+    tags: ["React", "GCP", "MCP", "Figma", "Spline"],
     liveUrl: "https://mbnutritionlabs.com",
+    liveLabel: "mbnutritionlabs.com",
     accent: "green",
     icon: Sparkles,
   },
   {
-    id: "ftth-semillero",
-    title: "Red FTTH & Streaming Telemático",
-    subtitle: "Optical Fiber Telecom Infrastructure for Rural Community",
-    category: "TELECOMMUNICATIONS & NETWORKS",
-    status: "encrypted",
-    badgeLabel: "SIMETRÍA GARANTIZADA",
+    id: "tomasi",
+    title: "Corporación TOMASI",
+    subtitle: "Backend de e-commerce para productores rurales",
+    category: "Backend",
+    badge: "~30 endpoints REST",
     description:
-      "Proyecto de investigación y grado en la Universidad del Quindío enfocado en el diseño, dimensionamiento y configuración de una red FTTH (Fibra hasta el Hogar) para 15 familias, asegurando distribución de internet y video streaming con ancho de banda simétrico y control de calidad de servicio.",
+      "Backend de la plataforma de comercio digital para productos artesanales y agrícolas de productores rurales colombianos. Construido con Java 21, Spring Boot y PostgreSQL, con autenticación, pagos con Wompi y gestión de imágenes con Cloudinary.",
     metrics: [
-      { label: "COBERTURA", value: "~15 Familias" },
-      { label: "BANDA", value: "Simétrica 100%" },
-      { label: "INFRAESTRUCTURA", value: "FTTH / QoS" },
+      { label: "API", value: "~30 endpoints" },
+      { label: "Pagos", value: "Wompi" },
+      { label: "Base de datos", value: "PostgreSQL" },
     ],
-    tags: ["FTTH", "Fibra Óptica", "Telefónica/Redes", "QoS", "GNS3", "Streaming", "Investigación"],
+    tags: ["Java 21", "Spring Boot", "PostgreSQL", "Wompi", "Cloudinary", "API REST"],
+    accent: "cyan",
+    icon: ShoppingCart,
+  },
+  {
+    id: "los-carlitos",
+    title: "Los Carlitos",
+    subtitle: "MVP de analítica y predicción de leads para agencias",
+    category: "Hackathon Talento Tech",
+    badge: "3.er lugar",
+    description:
+      "MVP construido en 8 horas durante el Hackathon Talento Tech. Ayuda a agencias de marketing digital a visualizar y predecir el comportamiento de sus clientes con un agente conversacional y un modelo de Machine Learning que estima la viabilidad de los proyectos.",
+    metrics: [
+      { label: "Resultado", value: "3.er lugar" },
+      { label: "Desarrollo", value: "8 horas" },
+      { label: "Despliegue", value: "Firebase" },
+    ],
+    tags: ["Machine Learning", "Python", "Firebase", "Agente conversacional"],
+    accent: "green",
+    icon: Award,
+  },
+  {
+    id: "ftth",
+    title: "Red FTTH y streaming",
+    subtitle: "Proyecto de grado en la Universidad del Quindío",
+    category: "Telecomunicaciones",
+    badge: "Proyecto de grado",
+    description:
+      "Diseño, dimensionamiento y configuración de una red de fibra hasta el hogar para unas 15 familias, con servicio de internet y video streaming sobre ancho de banda simétrico.",
+    metrics: [
+      { label: "Cobertura", value: "~15 familias" },
+      { label: "Ancho de banda", value: "Simétrico" },
+      { label: "Tecnología", value: "FTTH" },
+    ],
+    tags: ["FTTH", "Fibra óptica", "QoS", "Streaming"],
     accent: "cyan",
     icon: Network,
   },
 ]
 
+const LINK_CLASSES =
+  "inline-flex items-center gap-2 rounded border px-3 py-2 font-mono text-xs uppercase tracking-wider transition-colors duration-200"
+
 export function ProjectsShowcase() {
   return (
-    <section id="projects" className="py-24 relative z-10 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-widest mb-2">
-              <span className="text-primary/40">[02]</span>
-              <span>// REPOSITORIO DE DESPLIEGUES</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-mono font-bold text-white flex items-center gap-3">
-              <span>PROYECTOS DESTACADOS</span>
-              <span className="text-primary cyber-text-glow">.EXE</span>
-            </h2>
-          </div>
+    <section id="projects" className="relative scroll-mt-20 py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-4 md:px-8">
+        <SectionHeader
+          index="02"
+          kicker="Repositorios y despliegues"
+          title="Proyectos destacados"
+          suffix=".exe"
+          aside={<span>{PROJECTS.length} proyectos</span>}
+        />
 
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            <span>6 MÓDULOS ACTIVOS DE CV</span>
-          </div>
-        </div>
-
-        {/* Projects 3D HUD Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {projects.map((project, idx) => {
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
+          {PROJECTS.map((project) => {
             const Icon = project.icon
+            const isCyan = project.accent === "cyan"
             return (
               <HudCard
                 key={project.id}
                 accentColor={project.accent}
-                className="flex flex-col justify-between group hover:-translate-y-1"
+                className="group flex flex-col"
                 headerTitle={project.category}
-                statusTag={project.badgeLabel}
+                statusTag={project.badge}
               >
-                <div>
-                  {/* Title & Badge */}
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded bg-slate-900 border border-primary/20 text-primary group-hover:scale-110 transition-transform">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl sm:text-2xl font-bold font-mono text-white group-hover:text-primary transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-xs font-mono text-slate-400">{project.subtitle}</p>
-                      </div>
-                    </div>
+                <div className="flex items-start gap-3">
+                  <div
+                    className={`rounded border bg-slate-900 p-2.5 ${
+                      isCyan ? "border-accent/30 text-accent" : "border-primary/30 text-primary"
+                    }`}
+                  >
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-
-                  {/* Description */}
-                  <p className="text-slate-300 font-mono text-xs sm:text-sm leading-relaxed my-4">
-                    {project.description}
-                  </p>
-
-                  {/* Telemetry Metrics Strip */}
-                  <div className="grid grid-cols-3 gap-2 my-4 p-2.5 bg-slate-900/60 rounded border border-primary/10 text-center font-mono">
-                    {project.metrics.map((m, mIdx) => (
-                      <div key={mIdx}>
-                        <div className="text-[10px] text-slate-400 uppercase">{m.label}</div>
-                        <div className="text-xs sm:text-sm font-bold text-white mt-0.5">{m.value}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1.5 mt-3 mb-5">
-                    {project.tags.map((tag) => (
-                      <TechTag
-                        key={tag}
-                        name={tag}
-                        variant={project.accent === "cyan" ? "cyan" : "primary"}
-                      />
-                    ))}
+                  <div className="flex flex-col gap-1">
+                    <h3 className="font-mono text-xl font-bold text-white sm:text-2xl">{project.title}</h3>
+                    <p className="font-mono text-xs leading-relaxed text-slate-400">{project.subtitle}</p>
                   </div>
                 </div>
 
-                {/* Footer Uplinks */}
-                <div className="pt-4 border-t border-primary/15 flex items-center justify-between text-xs font-mono">
-                  <div className="flex items-center gap-3">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-slate-300 hover:text-primary transition-colors"
-                      >
-                        <Github className="w-4 h-4" />
-                        <span>REPOSITORIO</span>
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-accent hover:text-accent/80 transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        <span>VER SITIO</span>
-                      </a>
-                    )}
-                  </div>
+                <p className="mt-4 font-mono text-sm leading-relaxed text-slate-300">{project.description}</p>
 
-                  <span className="text-[10px] text-slate-400">SYS_ID: 0{idx + 1}</span>
+                <dl className="mt-4 grid grid-cols-3 gap-2 rounded border border-primary/10 bg-slate-900/60 p-3 text-center font-mono">
+                  {project.metrics.map((metric) => (
+                    <div key={metric.label} className="flex flex-col gap-1">
+                      <dt className="text-xs text-slate-400">{metric.label}</dt>
+                      <dd className="text-xs font-bold text-white sm:text-sm">{metric.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`Tecnologías de ${project.title}`}>
+                  {project.tags.map((tag) => (
+                    <li key={tag}>
+                      <TechTag name={tag} variant={isCyan ? "cyan" : "primary"} />
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto flex flex-wrap items-center gap-3 pt-5">
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${LINK_CLASSES} border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-background`}
+                    >
+                      <Github className="h-4 w-4" aria-hidden="true" />
+                      <span>Ver repositorio</span>
+                      <span className="sr-only">de {project.title} en GitHub (se abre en una pestaña nueva)</span>
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${LINK_CLASSES} border-accent/40 bg-accent/10 text-accent hover:bg-accent hover:text-background`}
+                    >
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      <span>{project.liveLabel ?? "Ver sitio"}</span>
+                      <span className="sr-only">(se abre en una pestaña nueva)</span>
+                    </a>
+                  )}
+                  {!project.githubUrl && !project.liveUrl && (
+                    <span className="font-mono text-xs text-slate-400">Sin enlace público</span>
+                  )}
                 </div>
               </HudCard>
             )

@@ -1,202 +1,188 @@
-"use client"
-
+import { Award, Calendar, Check } from "lucide-react"
 import { HudCard } from "../hud/hud-card"
 import { TechTag } from "../hud/tech-tag"
-import { CyberBadge } from "../hud/cyber-badge"
-import { Briefcase, Award, Calendar, CheckCircle2, Shield, Cpu, ExternalLink } from "lucide-react"
+import { Reveal } from "../ui/reveal"
+import { SectionHeader } from "../ui/section-header"
 
-interface ExperienceItem {
+interface Experience {
   period: string
   role: string
   organization: string
   badge: string
-  status: "active" | "standby" | "alert" | "encrypted"
   highlights: string[]
   tags: string[]
 }
 
-const experiences: ExperienceItem[] = [
+const EXPERIENCES: Experience[] = [
   {
-    period: "DIC 2025 — ACTUAL",
-    role: "Analista de Requerimientos y Soluciones Digitales",
-    organization: "Corporación TOMASI — Comercialización digital de productos rurales",
-    badge: "ACTIVO // EN PRODUCCIÓN",
-    status: "active",
+    period: "Dic 2025 — Actual",
+    role: "Analista de requerimientos y desarrollo backend",
+    organization: "Corporación TOMASI · E-commerce rural",
+    badge: "~30 endpoints REST",
     highlights: [
-      "Estructuración de requerimientos funcionales y comerciales para productores artesanales y agrícolas.",
-      "Desarrollo backend en equipo con Java 21, Spring Boot y PostgreSQL con más de 30 endpoints REST.",
-      "Integración de pasarela de pagos Wompi y almacenamiento multimedia con Cloudinary.",
-      "Presentación a Dirección de especificación técnica, arquitectura y seguridad.",
+      "Desarrollo en equipo del backend de la plataforma de e-commerce rural con Java 21, Spring Boot y PostgreSQL (~30 endpoints REST).",
+      "Integración de la pasarela de pagos Wompi y del almacenamiento de imágenes con Cloudinary.",
+      "Levantamiento de requerimientos funcionales con productores artesanales y agrícolas.",
     ],
-    tags: ["Java 21", "Spring Boot", "PostgreSQL", "Wompi", "Cloudinary", "Arquitectura REST"],
+    tags: ["Java 21", "Spring Boot", "PostgreSQL", "API REST", "Wompi", "Cloudinary"],
+  },
+  {
+    period: "Oct 2026",
+    role: "Desarrollador web freelance",
+    organization: "MB Nutrition Labs · Landing page de preventa",
+    badge: "Freelance",
+    highlights: [
+      "Diseño y desarrollo en dos semanas de la landing page de preventa para captar leads antes del lanzamiento.",
+      "Sitio publicado en mbnutritionlabs.com.",
+    ],
+    tags: ["React", "GCP", "MCP", "Figma", "Spline"],
+  },
+  {
+    period: "Dic 2025 — Ene 2026",
+    role: "Backend developer e IA aplicada",
+    organization: "SentimAI · Hackathon ONE II Latam (Equipo 39)",
+    badge: "94.2% de precisión",
+    highlights: [
+      "API de análisis de sentimientos para reseñas, comentarios y tweets.",
+      "Modelo de Regresión Logística con TF-IDF que alcanza 94.2% de precisión.",
+      "Backend con Spring Boot, MySQL y Redis para caché, desplegado en contenedores sobre OCI.",
+    ],
+    tags: ["Java", "Spring Boot", "MySQL", "Redis", "TF-IDF", "Docker", "OCI"],
+  },
+  {
+    period: "Nov 2025",
+    role: "Analista de datos e IA aplicada",
+    organization: "Los Carlitos · Hackathon Talento Tech",
+    badge: "3.er lugar",
+    highlights: [
+      "Tercer lugar del hackathon con un MVP construido en 8 horas.",
+      "Agente conversacional y modelo de Machine Learning para predecir leads y viabilidad de proyectos en agencias digitales.",
+      "Despliegue en Firebase.",
+    ],
+    tags: ["Machine Learning", "Python", "Firebase"],
   },
   {
     period: "2025",
-    role: "Desarrollador — Sistema Command and Control (C2) Red Team",
-    organization: "Hackathon TIC – Talento Tech (Reto ALIGO Defensores Informáticos)",
-    badge: "PENTESTING LAB",
-    status: "encrypted",
+    role: "Desarrollador de sistema C2",
+    organization: "Hackathon TIC Talento Tech · Reto ALIGO Defensores Informáticos",
+    badge: "Red team",
     highlights: [
-      "Desarrollo de sistema C2 para prácticas de red team y pentesting con cifrado TLS punto a punto.",
-      "Interfaz gráfica de operador con soporte multi-agente y ejecución de comandos remotos individuales o broadcast.",
-      "Contenerización de la infraestructura mediante Docker.",
+      "Sistema de Command and Control para prácticas de red team y pentesting con comunicación cifrada por TLS.",
+      "Interfaz de operador con soporte multi-agente y ejecución de comandos dirigida o en broadcast.",
+      "Infraestructura contenerizada con Docker.",
     ],
-    tags: ["Ciberseguridad", "Red Team", "TLS/SSL", "Docker", "Multi-Agent"],
+    tags: ["Red team", "Pentesting", "C2", "TLS", "Docker"],
   },
   {
-    period: "OCT 2026",
-    role: "Desarrollador Web Freelance — Landing Page Preventa",
-    organization: "MB Nutrition Labs (Proyecto Freelance)",
-    badge: "AGENTS & MCP",
-    status: "active",
+    period: "Ago 2024 — Oct 2025",
+    role: "Estudiante investigador",
+    organization: "Universidad del Quindío · Semillero y proyecto de grado",
+    badge: "Telecomunicaciones",
     highlights: [
-      "Desarrollo en 2 semanas de landing page de preventa para captación de leads comerciales antes del lanzamiento.",
-      "Construcción utilizando v0 y Antigravity, integrando mediante MCP (Model Context Protocol) Spline, Figma, GCP (despliegue de servicios en Cloud Run) y Composio.",
+      "Servicios de internet y video streaming sobre una red de fibra óptica FTTH para unas 15 familias.",
+      "Dimensionamiento de tráfico y configuración de la red para garantizar ancho de banda simétrico.",
     ],
-    tags: ["Google Cloud (GCP)", "GCP Cloud Run", "Antigravity", "MCP", "v0", "Docker", "Spline 3D", "Figma", "Composio"],
-  },
-  {
-    period: "DIC 2025 — ENE 2026",
-    role: "Backend Developer & IA Aplicada — Proyecto SentimAI",
-    organization: "Hackathon ONE II – Latam (Alura Latam & NoCountry) — Equipo 39",
-    badge: "94.2% ML ACCURACY",
-    status: "active",
-    highlights: [
-      "Diseño de API de clasificación de sentimientos en reseñas y tweets.",
-      "Entrenamiento de modelo de Regresión Logística con TF-IDF alcanzando 94.2% de precisión (umbral 0.51).",
-      "Backend con Spring Boot, MySQL y Redis para caché; microservicios contenerizados en Oracle Cloud (OCI).",
-    ],
-    tags: ["Java", "Spring Boot", "Machine Learning", "TF-IDF", "Redis", "OCI", "Docker"],
-  },
-  {
-    period: "21 NOV 2025",
-    role: "Analista de Datos e IA Aplicada — Equipo 'Los Carlitos'",
-    organization: "Hackathon Talento Tech: Un encuentro de creación en la región 2",
-    badge: "3.er LUGAR PODIO",
-    status: "standby",
-    highlights: [
-      "MVP desarrollado en 8 horas para entender y predecir leads y comportamiento de clientes para agencias digitales.",
-      "Agente conversacional asistido por IA (Codex / Cursor) y modelo de Machine Learning para predecir viabilidad de proyectos.",
-      "Despliegue ágil en Firebase y obtención del 3.er lugar del certamen.",
-    ],
-    tags: ["Codex", "Cursor", "Machine Learning", "Firebase", "Python", "Data Analytics"],
-  },
-  {
-    period: "AGO 2024 — OCT 2025",
-    role: "Estudiante Investigador — Semillero & Proyecto de Grado",
-    organization: "Universidad del Quindío",
-    badge: "INGENIERÍA TELECOM",
-    status: "encrypted",
-    highlights: [
-      "Implementación de servicios de internet y video streaming sobre red de fibra óptica FTTH para ~15 familias.",
-      "Dimensionamiento de tráfico y configuración de red para asegurar ancho de banda simétrico de subida y bajada.",
-    ],
-    tags: ["Redes FTTH", "Fibra Óptica", "Telefónica/Redes", "Simulación", "QoS"],
+    tags: ["Redes FTTH", "Fibra óptica", "QoS"],
   },
 ]
 
-const certifications = [
-  { name: "Oracle Cloud Infrastructure (OCI) Foundations Associate", org: "Oracle University", type: "Cloud & IAM" },
-  { name: "Backend Developer", org: "Alura Latam (Programa ONE G9 / Oracle Next Education)", type: "Backend & Java" },
-  { name: "Ciberseguridad Nivel Intermedio", org: "Talento Tech / MinTIC", type: "Security & Pentest" },
-  { name: "Los bits y bytes de las redes informáticas", org: "Google", type: "Networking" },
-  { name: "Aspectos básicos de la asistencia técnica", org: "Google", type: "IT Support" },
-  { name: "Fundamentos de LLMs & Prompt Engineering", org: "Platzi", type: "AI & GenAI" },
-  { name: "Automatizaciones con Make & Creación Web con v0", org: "Platzi", type: "Automation & Agents" },
-  { name: "Supabase & Fundamentos de Python", org: "Platzi", type: "Data & Code" },
+const CERTIFICATIONS = [
+  { name: "Oracle Cloud Infrastructure (OCI) Foundations Associate", org: "Oracle University" },
+  { name: "Backend Developer — Programa ONE G9", org: "Alura Latam · Oracle Next Education" },
+  { name: "Ciberseguridad nivel intermedio", org: "Talento Tech · MinTIC" },
+  { name: "Los bits y bytes de las redes informáticas", org: "Google" },
+  { name: "Aspectos básicos de la asistencia técnica", org: "Google" },
+  { name: "Fundamentos de LLMs y Prompt Engineering", org: "Platzi" },
+  { name: "Automatizaciones con Make y creación web con v0", org: "Platzi" },
+  { name: "Supabase y fundamentos de Python", org: "Platzi" },
 ]
 
 export function ExperienceTimeline() {
   return (
-    <section id="experience" className="py-24 relative z-10 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-widest mb-2">
-              <span className="text-primary/40">[04]</span>
-              <span>// HISTORIAL DE OPERACIONES & LOGS</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-mono font-bold text-white flex items-center gap-3">
-              <span>EXPERIENCIA & HITOS</span>
-              <span className="text-primary cyber-text-glow">.LOG</span>
-            </h2>
-          </div>
+    <section id="experience" className="relative scroll-mt-20 py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-4 md:px-8">
+        <SectionHeader
+          index="04"
+          kicker="Trayectoria"
+          title="Experiencia"
+          suffix=".log"
+          aside={
+            <>
+              <Calendar className="h-4 w-4 text-accent" aria-hidden="true" />
+              <span>2024 — 2026</span>
+            </>
+          }
+        />
 
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-            <Calendar className="w-4 h-4 text-accent" />
-            <span>TRAYECTORIA VERIFICADA 2024 — 2026</span>
-          </div>
-        </div>
+        <ol
+          data-scene-copy="experience"
+          className="relative flex flex-col gap-6 border-l border-primary/30 pl-6 md:pl-10 lg:max-w-2xl xl:max-w-3xl"
+        >
+          {EXPERIENCES.map((experience) => (
+            <li key={`${experience.organization}-${experience.period}`} className="relative">
+              <span
+                className="absolute -left-6 top-6 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-background shadow-[0_0_10px_#00FF66] md:-left-10"
+                aria-hidden="true"
+              />
 
-        {/* Timeline Events */}
-        <div className="space-y-6 relative before:absolute before:inset-0 before:left-4 md:before:left-8 before:w-0.5 before:bg-primary/20 before:z-0">
-          {experiences.map((exp, idx) => (
-            <div key={idx} className="relative z-10 pl-10 md:pl-16">
-              {/* Timeline Node Point */}
-              <div className="absolute left-2.5 md:left-6.5 top-5 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-slate-900 border-2 border-primary shadow-[0_0_10px_#00FF66]" />
-
-              <HudCard
-                headerTitle={exp.period}
-                statusTag={exp.badge}
-                className="space-y-3"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <h3 className="text-lg sm:text-xl font-bold font-mono text-white">
-                    {exp.role}
-                  </h3>
-                  <span className="text-xs font-mono text-accent">
-                    {exp.organization}
-                  </span>
+              <HudCard headerTitle={experience.period} statusTag={experience.badge}>
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-pretty font-mono text-lg font-bold text-white sm:text-xl">{experience.role}</h3>
+                  <p className="font-mono text-sm text-accent">{experience.organization}</p>
                 </div>
 
-                <ul className="space-y-1.5 pt-2 text-xs sm:text-sm font-mono text-slate-300">
-                  {exp.highlights.map((h, hIdx) => (
-                    <li key={hIdx} className="flex items-start gap-2">
-                      <span className="text-primary mt-0.5">›</span>
-                      <span>{h}</span>
+                <ul className="mt-4 flex flex-col gap-2 font-mono text-sm leading-relaxed text-slate-300">
+                  {experience.highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-2">
+                      <span className="text-primary" aria-hidden="true">
+                        ›
+                      </span>
+                      <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-primary/10">
-                  {exp.tags.map((t) => (
-                    <TechTag key={t} name={t} variant="primary" />
+                <ul
+                  className="mt-4 flex flex-wrap gap-1.5 border-t border-primary/10 pt-4"
+                  aria-label="Tecnologías utilizadas"
+                >
+                  {experience.tags.map((tag) => (
+                    <li key={tag}>
+                      <TechTag name={tag} variant="primary" />
+                    </li>
                   ))}
-                </div>
+                </ul>
               </HudCard>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
 
-        {/* Certifications Matrix Grid */}
-        <div className="mt-16 pt-12 border-t border-primary/20">
-          <div className="flex items-center gap-2 text-xs font-mono text-accent uppercase tracking-widest mb-3">
-            <Award className="w-4 h-4" />
-            <span>// CREDENCIALES & CERTIFICACIONES OFICIALES</span>
-          </div>
-          <h3 className="text-2xl font-mono font-bold text-white mb-6">
-            CERTIFICACIONES PROFESIONALES
-          </h3>
+        <div className="mt-16 border-t border-primary/20 pt-12">
+          <Reveal className="mb-6 flex flex-col gap-2">
+            <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent">
+              <Award className="h-4 w-4" aria-hidden="true" />
+              <span>Formación complementaria</span>
+            </p>
+            <h3 className="font-mono text-2xl font-bold text-white">Certificaciones</h3>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono">
-            {certifications.map((cert, cIdx) => (
-              <div
-                key={cIdx}
-                className="p-4 rounded bg-[#0d1322]/80 border border-primary/15 hover:border-primary/40 transition-colors flex items-start gap-3"
-              >
-                <span className="text-primary mt-1 text-xs">✓</span>
-                <div>
-                  <h4 className="text-sm font-semibold text-white">{cert.name}</h4>
-                  <div className="flex items-center gap-2 text-xs text-slate-400 mt-1">
-                    <span className="text-primary/70">{cert.org}</span>
-                    <span>•</span>
-                    <span className="text-accent text-[11px]">{cert.type}</span>
+          <ul className="grid grid-cols-1 gap-4 font-mono md:grid-cols-2">
+            {CERTIFICATIONS.map((certification, index) => (
+              <li key={certification.name}>
+                <Reveal
+                  delay={(index % 2) * 0.08}
+                  offset={16}
+                  className="flex h-full items-start gap-3 rounded border border-primary/20 bg-[#0d1322]/90 p-4"
+                >
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <div className="flex flex-col gap-1">
+                    <h4 className="text-sm font-semibold leading-relaxed text-white">{certification.name}</h4>
+                    <p className="text-xs text-slate-400">{certification.org}</p>
                   </div>
-                </div>
-              </div>
+                </Reveal>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>
